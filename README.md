@@ -10,25 +10,27 @@ sysctl --system
 modprobe overlay
 modprobe br_netfilter
 
-Configurar hostname em kd nó
+#Configurar hostname em kd nó
+
 hostnamectl set-hostname HOSTNAME
 
-Instalação conteinerd 
+#Instalação conteinerd 
 apt update
 apt-get install containerd -y
 mkdir -p /etc/containerd
 containerd config default  /etc/containerd/config.toml
 
-Instalação k8s
-
+#Instalação k8s
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
-
-
+apt update
 apt-get install kubeadm kubelet kubectl -y
 
-kubeadm init --apiserver-advertise-address 192.168.33.88
-kubeadm init --apiserver-cert-extras-sans IP-PUBLIC
+Setar o ip em cada maquina do cluster no default do kubelet
+
+echo "KUBELET_EXTRA_ARGS=--node-ip=192.168.33.11" > /etc/default/kubelet
+
+kubeadm init --apiserver-advertise-address="192.168.33.10" --apiserver-cert-extra-sans="192.168.33.10"  --node-name master --pod-network-cidr=192.168.0.0/16
  
  
 Instalar um addions de redes
