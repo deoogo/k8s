@@ -1,49 +1,51 @@
-# k8s
-Dicas k8s
+# k8s sem o docker
 
-Setup inicial 
+<h1> Dicas k8s </h1>
 
-cat "net.bridge.bridge-nf-call-iptables = 1" > /etc/sysctl.conf
-echo '1' > /proc/sys/net/ipv4/ip_forward
-sysctl --system
+<h2> Setup inicial Kubernetes </h2> 
 
-modprobe overlay
-modprobe br_netfilter
+* cat "net.bridge.bridge-nf-call-iptables = 1" > /etc/sysctl.conf
+* echo '1' > /proc/sys/net/ipv4/ip_forward
+* sysctl --system
 
-#Configurar hostname em kd nó
+* modprobe overlay && modprobe br_netfilter
 
-hostnamectl set-hostname HOSTNAME
 
-#Instalação conteinerd 
-apt update
-apt-get install containerd -y
-mkdir -p /etc/containerd
-containerd config default  /etc/containerd/config.toml
+# Configurar hostname em kd nó
 
-#Instalação k8s
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
-apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
-apt update
-apt-get install kubeadm kubelet kubectl -y
+* hostnamectl set-hostname HOSTNAME
 
-Setar o ip em cada maquina do cluster no default do kubelet
+# Instalação conteinerd 
+* apt update && apt-get install containerd -y
 
-echo "KUBELET_EXTRA_ARGS=--node-ip=192.168.33.11" > /etc/default/kubelet
+* mkdir -p /etc/containerd
+* containerd config default  /etc/containerd/config.toml
 
-kubeadm init --apiserver-advertise-address="192.168.33.10" --apiserver-cert-extra-sans="192.168.33.10"  --node-name master --pod-network-cidr=192.168.0.0/16
+# Instalação k8s
+
+* curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+* apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" && apt update
+
+* apt-get install kubeadm kubelet kubectl -y
+
+# Setar o ip em cada maquina do cluster no default do kubelet
+
+* echo "KUBELET_EXTRA_ARGS=--node-ip=192.168.33.11" > /etc/default/kubelet
+
+* kubeadm init --apiserver-advertise-address="192.168.33.10" --apiserver-cert-extra-sans="192.168.33.10"  --node-name master --pod-network-cidr=192.168.0.0/16
  
  
-Instalar um addions de redes
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+# Instalar um addions de redes
+* kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
  
  
-Criar um app de test
-kubectl create deployment nginx --image nginx
-kubectl expose deployment nginx --type NodePort --port 80
+# Criar um app de test
+* kubectl create deployment nginx --image nginx
+* kubectl expose deployment nginx --type NodePort --port 80
 
 
-Pegar o token de adição de nós 
+# Pegar o token de adição de nós 
 
-kubeadm  token create print-join-command
+* kubeadm  token create print-join-command
  
-kubeadm reset 
+* kubeadm reset 
