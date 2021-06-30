@@ -49,3 +49,22 @@
 * kubeadm  token create print-join-command
  
 * kubeadm reset 
+
+# Comandos utéis 
+
+* kubectl top pods -n namespace
+
+* kubectl top nodes -n namespace
+
+* kubectl get pods -n namespace
+
+* kubectl get hpa -n namespace
+
+* kubectl edit hpa  NOMEDOHPA -n namespace - Alterar o hpa
+
+* kubectl get deployments -n namespace
+
+* kubectl edit deployments NOMEDODEPLOYMENTS -n namespace
+
+
+
