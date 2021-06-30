@@ -60,7 +60,8 @@
 
 * kubectl get hpa -n namespace
 
-* kubectl edit hpa  NOMEDOHPA -n namespace - Alterar o hpa
+* kubectl edit hpa  NOMEDOHPA -n namespace -->  Alterar as variaveis target / max e min / current e desired
+
 
 * kubectl get deployments -n namespace
 
