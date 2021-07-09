@@ -56,7 +56,9 @@
 
 * kubectl top nodes -n namespace
 
-* kubectl get pods -n namespace
+* kubectl get pods -n name 
+* kubectl describe pod NomedoPod -n namespace
+
 
 * kubectl get hpa -n namespace
 
