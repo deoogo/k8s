@@ -51,6 +51,8 @@
 * kubeadm reset 
 
 # Comandos utéis 
+* kubectl logs nomeDoPod -n namespace
+
 
 * kubectl top pods -n namespace
 
