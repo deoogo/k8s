@@ -1,39 +1,24 @@
-# k8s sem o docker
+<h1> Conteiners </h1>
 
-<h1> Dicas k8s </h1>
+Build Dockerfile
+docker image build -t nome:1.0 .
 
-<h2> Setup inicial Kubernetes </h2> 
+docker images ls
+docker container run -d nome:1.0
+docker container ls
 
-* cat "net.bridge.bridge-nf-call-iptables = 1" > /etc/sysctl.conf
-* echo '1' > /proc/sys/net/ipv4/ip_forward
-* sysctl --system
+Volume
 
-* modprobe overlay && modprobe br_netfilter
+docker run -ti --mount type=bind.src=caminhoHost.dist=/caminhoConteiner IMAGEM
+docker volume ls
+docker volume create **nome**
+docker volume inspect **nome**
 
+docker run -ti --mount type=**volume**.src=**nome**.dist=/caminhoConteiner IMAGEM
 
-# Configurar hostname em kd nó
+docker run -d -p 0:0 
 
-* hostnamectl set-hostname HOSTNAME
-
-# Instalação conteinerd 
-* apt update && apt-get install containerd -y
-
-* mkdir -p /etc/containerd
-* containerd config default  /etc/containerd/config.toml
-
-# Instalação k8s
-
-* curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
-* apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" && apt update
-
-* apt-get install kubeadm kubelet kubectl -y
-
-# Setar o ip em cada maquina do cluster no default do kubelet
-
-* echo "KUBELET_EXTRA_ARGS=--node-ip=192.168.33.11" > /etc/default/kubelet
-
-* kubeadm init --apiserver-advertise-address="192.168.33.10" --apiserver-cert-extra-sans="192.168.33.10"  --node-name master --pod-network-cidr=192.168.0.0/16
- 
+docker volume prune
  
 # Instalar um addions de redes
 * kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
