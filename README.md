@@ -1,24 +1,44 @@
 <h1> Conteiners </h1>
 
-Build Dockerfile
-docker image build -t nome:1.0 .
+## Build Dockerfile
+* docker image build -t nome:1.0 .
+
+## Ex: images multstages, ajuda na redução das imagens e criar somente o build como uma pipeline
+
+```
+FROM golang as IMAGEMANTERIOR
+WORKDIR /app
+ADD . /app
+RUN "Comando para executar"
+
+FROM alpine
+WORKDIR /app
+COPY --from=IMAGEMANTERIOR CAMINHOAPP /app
+ENTRYPOINT ./"Comando para executar"
 
 docker images ls
 docker container run -d nome:1.0
 docker container ls
+```
+## Volume
 
-Volume
 
-docker run -ti --mount type=bind.src=caminhoHost.dist=/caminhoConteiner IMAGEM
-docker volume ls
-docker volume create **nome**
-docker volume inspect **nome**
+* docker run -ti --mount type=bind.src=caminhoHost.dist=/caminhoConteiner IMAGEM
 
-docker run -ti --mount type=**volume**.src=**nome**.dist=/caminhoConteiner IMAGEM
+* docker volume ls
 
-docker run -d -p 0:0 
+* docker volume create **nome**
 
-docker volume prune
+* docker volume inspect **nome**
+
+
+* docker run -ti --mount type=**volume**.src=**nome**.dist=/caminhoConteiner IMAGEM
+
+
+* docker run -d -p 0:0 
+
+
+* docker volume prune
  
 # Instalar um addions de redes
 * kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
