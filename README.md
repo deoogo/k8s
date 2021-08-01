@@ -1,12 +1,8 @@
 <h1> Conteiners </h1>
 
-## Build Dockerfile
-* docker image build -t nome:1.0 .
-
-## Ex: images multstages, ajuda na redução das imagens e criar somente o build como uma pipeline
-
+### Ex: images multstages, 
 ```
-FROM golang as IMAGEMANTERIOR
+FROM imageBuild AS NovaImage
 WORKDIR /app
 ADD . /app
 RUN "Comando para executar"
@@ -16,11 +12,23 @@ WORKDIR /app
 COPY --from=IMAGEMANTERIOR CAMINHOAPP /app
 ENTRYPOINT ./"Comando para executar"
 
-docker images ls
-docker container run -d nome:1.0
-docker container ls
+
+
 ```
-## Volume
+### Build Dockerfile
+* docker image build -t nome:1.0 .
+* docker images ls
+* docker container run -d nome:1.0
+* docker container ls
+
+
+
+### Comandos docker 
+
+* docker run -d -p 0:0
+* docker exec -it conteiner /bash ou sh
+
+### Volume
 
 
 * docker run -ti --mount type=bind.src=caminhoHost.dist=/caminhoConteiner IMAGEM
@@ -35,27 +43,28 @@ docker container ls
 * docker run -ti --mount type=**volume**.src=**nome**.dist=/caminhoConteiner IMAGEM
 
 
-* docker run -d -p 0:0 
+ 
 
 
 * docker volume prune
  
-# Instalar um addions de redes
+### Instalar um addions de redes
+
 * kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
  
  
-# Criar um app de test
+### Criar um app de test
 * kubectl create deployment nginx --image nginx
 * kubectl expose deployment nginx --type NodePort --port 80
 
 
-# Pegar o token de adição de nós 
+### Pegar o token de adição de nós 
 
 * kubeadm  token create print-join-command
  
 * kubeadm reset 
 
-# Comandos utéis 
+### Comandos utéis 
 * kubectl logs nomeDoPod -n namespace
 
 
