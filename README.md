@@ -11,10 +11,8 @@ FROM alpine
 WORKDIR /app
 COPY --from=IMAGEMANTERIOR CAMINHOAPP /app
 ENTRYPOINT ./"Comando para executar"
-
-
-
 ```
+
 ### Build Dockerfile
 * docker image build -t nome:1.0 .
 * docker images ls
