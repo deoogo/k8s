@@ -1,6 +1,6 @@
 <h1> Conteiners </h1>
 
-### Ex: images multstages, 
+### Ex: images e com multstages 
 ```
 FROM imageBuild AS NovaImage
 WORKDIR /app
@@ -23,6 +23,7 @@ ENTRYPOINT ./"Comando para executar"
 
 ### Comandos docker 
 
+* docker container run -it IMAGE
 * docker run -d -p 0:0
 * docker exec -it conteiner /bash ou sh
 
