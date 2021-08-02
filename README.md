@@ -14,12 +14,17 @@ ENTRYPOINT ./"Comando para executar"
 ```
 
 ### Build Dockerfile
-* docker image build -t nome:1.0 .
+* docker image build -t userDockerHub/nome:TAG.
 * docker images ls
-* docker container run -d nome:1.0
+* docker container run -d userDockerHub/nome:TAG
 * docker container ls
 
 
+### Registry docker
+* docker images tag IDconteiner userDockerHub/nome:TAG
+* docker login registry.com
+* docker push userDockerHub/nome:TAG
+* docker pul userDockerHub/nome:TAG
 
 ### Comandos docker 
 
