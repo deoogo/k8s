@@ -76,6 +76,7 @@ ENTRYPOINT ./"Comando para executar"
 
 * kubectl top nodes -n namespace
 
+* kubectl (pods|services|) --all-namespaces
 * kubectl get pods -n name 
 * kubectl describe pod NomedoPod -n namespace
 
