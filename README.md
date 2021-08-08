@@ -57,7 +57,7 @@ ENTRYPOINT ./"Comando para executar"
 * kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
  
  
-### Criar um app de test
+### Criar um Deployment de teste
 * kubectl create deployment nginx --image nginx
 * kubectl expose deployment nginx --type NodePort --port 80
 
@@ -68,16 +68,22 @@ ENTRYPOINT ./"Comando para executar"
  
 * kubeadm reset 
 
-### Comandos utéis 
-* kubectl logs nomeDoPod -n namespace
+### Comandos utéis
+* kubectl (pods|services|) --all-namespaces -> Listar pods ou services
+
+* kubectl logs nomeDoPod -n namespace -> Logs do pods
 
 
-* kubectl top pods -n namespace
+* kubectl exec -ti my_pod-79d7766cb8-2shml -- bash -> logar no conteiner
 
-* kubectl top nodes -n namespace
 
-* kubectl (pods|services|) --all-namespaces
+* kubectl top pods -n namespace -> Mem/Cpu/disco dos Pods
+
+* kubectl top nodes -n namespace -> Mem/Cpu/disco dos nós
+
+
 * kubectl get pods -n name 
+
 * kubectl describe pod NomedoPod -n namespace
 
 
