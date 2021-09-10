@@ -1,17 +1,5 @@
 <h1> Conteiners </h1>
 
-### Ex: images e com multstages 
-```
-FROM imageBuild AS NovaImage
-WORKDIR /app
-ADD . /app
-RUN "Comando para executar"
-
-FROM alpine
-WORKDIR /app
-COPY --from=IMAGEMANTERIOR CAMINHOAPP /app
-ENTRYPOINT ./"Comando para executar"
-```
 
 ### Build Dockerfile
 * docker image build -t userDockerHub/nome:TAG.

@@ -1,0 +1,11 @@
+# Image multi stage
+FROM imageBuild AS NovaImage
+WORKDIR /app
+ADD . /app
+RUN "Comando para executar"
+
+FROM alpine
+WORKDIR /app
+COPY --from=IMAGEMANTERIOR CAMINHOAPP /app
+ENTRYPOINT ./"Comando para executar"
+
