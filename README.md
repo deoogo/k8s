@@ -84,5 +84,21 @@
 
 * kubectl edit deployments NOMEDODEPLOYMENTS -n namespace
 
+### HELM
 
+* helm repo list --> Lista seu repo local do HELM
+
+* helm install prometheus prometheus-community/prometheus --> Exemplo pratico de uma instalação 
+
+* helm upgrade nome_realese projeto/helm --set key=value --> Alterar um paramentro do manifesto do k8s
+
+* helm show values projeto/helm > values.yaml --> lista os valores do helm chart
+
+* helm upgrade nome_realese projeto/helm -f values.yaml  --> Aplicando as alterações do values.yaml
+
+* helm uninstall  prometheus --> Desistalar 
+
+
+
+ 
 
